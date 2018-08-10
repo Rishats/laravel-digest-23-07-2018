@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/users/only-trashed', 'UsersController@onlyTrashed')->name('onlyTrashed');
+Route::get('/users/with-trashed', 'UsersController@withTrashed')->name('withTrashed');
+Route::get('/users/trashed-user/{id}', 'UsersController@showTrashed')->name('showTrashed');
+Route::patch('/users/trashed-user/{id}', 'UsersController@restoreTrashed')->name('restoreTrashed');
+Route::delete('/users/trashed-user/{id}', 'UsersController@destroyPermanently')->name('destroyPermanently');
+Route::resource('users', 'UsersController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
